@@ -2,7 +2,7 @@
 export async function load( { fetch, params }) {
 
     let locations;
-    let loc_id;
+    
 
     try {
         // Call fetch
@@ -14,13 +14,6 @@ export async function load( { fetch, params }) {
             locations = await res_locations.json();
         }
 
-        const res_loc_id = await fetch('/api/ID');
-
-        // if resonse code 200 (ok)
-        if (res_loc_id.ok) {
-            // get json from resonse
-            loc_id = await res_loc_id.json();
-        }
     } catch(error){
             // an error occured - return status code amd mesage
         return {
@@ -30,8 +23,7 @@ export async function load( { fetch, params }) {
     }
 
     return {
-        locations: locations.data,
-        locID: loc_id.data
+        locations: locations.data
     }
 
 

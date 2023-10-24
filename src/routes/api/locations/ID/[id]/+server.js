@@ -6,18 +6,17 @@ import {supabase} from "$lib/supabase.js";
 // Get locations for a category by category_id
 export async function GET({ params, request, cookies }) {
 
-    let loc_id = 0;
+    let id = 0;
     if (params.id && !isNaN(parseInt(params.id))) {
-        loc_id = parseInt(params.id)
+        id = parseInt(params.id)
     }
 
-    if (loc_id > 0) {
+    if (id > 0) {
 
         const locations = await supabase
         .from('locations')
         .select('*')
-        .eq('id', loc_id)
-        .order('name', {ascending: true});
+        .eq('id', id);
 
         if (locations.error) {
             return json({

@@ -34,6 +34,12 @@
                       {/each}
                   </select>
               </div>
+
+              <!-- ID -->
+              <div class="mb-3">
+                <label for="id" class="form-label">Id</label>
+                <input type="number" name="id" class="form-control" bind:value={$form.id} />
+            </div>
   
               <!-- name -->
               <div class="mb-3">
@@ -58,11 +64,33 @@
                   <label for="latitude" class="form-label">Latitude</label>
                   <input type="text" name="latitude" class="form-control" bind:value={$form.latitude} />
               </div>
-  
+
+              <!-- Shared Select-->
+            <div class="mb-3">
+              <label for="shared" class="form-label">Shared</label>
+            <select name="shared" bind:value={$form.shared} class="form-select">
+                <option value="0">Choose value</option>
+                <!-- Add each value to the select -->
+                <option value={Boolean(1)}>Yes</option>
+                <option value={Boolean(0)}>No</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <!-- Favourite Select-->
+            <label for="favourite" class="form-label">Favourite</label>
+            <select name="favourite" bind:value={$form.favourite} class="form-select">
+                <option value="0">Choose value</option>
+                <!-- Add each value to the select -->
+                <option value={Boolean(1)}>Yes</option>
+                <option value={Boolean(0)}>No</option>
+            </select>
+        </div>
               <!-- submit button -->
               <div class="mb-3">
                   <button class="btn btn-primary">Submit</button>
               </div>
+
           </form>
       </div>
   </div>

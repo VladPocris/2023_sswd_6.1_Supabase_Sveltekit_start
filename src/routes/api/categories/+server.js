@@ -21,4 +21,21 @@ export async function GET({ request, cookies }) {
         data: categories.data,
         status: categories.status
     });
+};
+
+// Add a new category
+export async function POST({ request, cookies }) {
+    // Get data from request body
+    let data = await request.json();
+
+    // Insert data
+    const cat = await supabase
+    .from('location_category')
+    .insert([data])
+    .select()
+
+
+    return json({
+        data: cat.data
+    });
 }

@@ -1,7 +1,6 @@
 <script>
 	export let data;
 
-	let locations_id = data.locations.id;
 	let locations = data.locations;
 
 	/**
@@ -35,20 +34,20 @@
 		<!-- Page Header -->
 		<h2 class="mt-5">Locations from Supabase</h2>
 	</div>
-	{#if locations_id && locations}
+	{#if locations}
 		<div class="row">
 			<div class="col-sm-2">
 				<!-- Page Body Left Column (menu) -->
-				<div id="categories" class="list-group">
+				<div id="id" class="list-group">
 					<button on:click={() => filterById(0)} class="list-group-item list-group-item-action">
-						All Locations
+						All Locations ID
 					</button>
-					{#each locations_id as id}
+					{#each locations as loc}
 						<button
-							on:click={() => filterById(Number(id))}
+							on:click={() => filterById(Number(loc.id))}
 							class="list-group-item list-group-item-action"
 						>
-							{id}
+							{loc.id}
 						</button>
 					{/each}
 				</div>
@@ -68,15 +67,15 @@
 							</tr>
 						</thead>
 						<tbody>
-							{#each locations as location}
+							{#each locations as loc}
 								<tr>
-									<td>{location.id}</td>
-									<td>{location.name}</td>
-									<td>{location.description}</td>
+									<td>{loc.id}</td>
+									<td>{loc.name}</td>
+									<td>{loc.description}</td>
 									<td
 										><a
-											href="https://www.openstreetmap.org/search?query={location.latitude}%2C{location.longitude}#map=17/{location.latitude}/{location.longitude}"
-											target="_blank">{location.latitude}, {location.longitude}</a
+											href="https://www.openstreetmap.org/search?query={loc.latitude}%2C{loc.longitude}#map=17/{loc.latitude}/{loc.longitude}"
+											target="_blank">{loc.latitude}, {loc.longitude}</a
 										></td
 									>
 								</tr>
@@ -92,5 +91,6 @@
 		<p>No data to display</p>
 	{/if}
 	<p><a href="/add_location">Add new location</a></p>
+	<p><a href="/add_category">Add new category</a></p>
 </div>
 <!-- End Main Content-->

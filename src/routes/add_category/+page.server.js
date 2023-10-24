@@ -7,13 +7,8 @@ import { superValidate, message } from 'sveltekit-superforms/server';
 
 const schema = z.object({
     id: z.number().optional(),
-    category_id: z.number(),
     name: z.string(),
     description: z.string(),
-    longitude: z.number(),
-    latitude: z.number(),
-    shared: z.boolean(),
-    favourite: z.boolean()
 });
 
 // Page load
@@ -22,20 +17,11 @@ export async function load({ fetch, params }) {
     // Build form
     const form = await superValidate(schema);
 
-    // Get categories (to display in a select list in the form)
-    let categories;
     const response = await fetch('/api/categories');
-
-    // if resonse code 200 (ok)
-    if (response.ok) {
-        // get json from resonse
-        categories = await response.json();
-    }
 
     // Return form and categories
     return {
-        form,
-        categories: categories.data,
+        form
     };
 };
 
@@ -52,9 +38,9 @@ export const actions = {
             return fail(400, { form });
         }
 
-        //Add the new location via an API call
+        //Add the new category via an API call
         //Note POST
-        const response = await fetch('/api/locations',{
+        const response = await fetch('/api/categories',{
                 method: 'POST',
                 body: JSON.stringify(form.data),
                 headers: {
@@ -68,6 +54,6 @@ export const actions = {
         }
 
         // return form and message
-        return message(form, `success: new location added`);
+        return message(form, `success: new category added`);
     }
 }

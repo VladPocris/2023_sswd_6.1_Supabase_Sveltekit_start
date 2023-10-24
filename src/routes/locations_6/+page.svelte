@@ -92,5 +92,6 @@
 		<p>No data to display</p>
 	{/if}
 	<p><a href="/add_location">Add new location</a></p>
+	<p><a href="/add_category">Add new category</a></p>
 </div>
 <!-- End Main Content-->

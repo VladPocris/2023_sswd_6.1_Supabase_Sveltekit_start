@@ -33,6 +33,9 @@
         <li class="nav-item">
             <a class="nav-link" href="/locations_6">Locations Lab 6</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/locations_7">Locations Lab 7</a>
+        </li>
     </ul>
 </nav>
 <style>
